@@ -1,32 +1,38 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/$/, '') || '';
+const getBaseUrl = () => {
+  if (typeof window === "undefined") {
+    return process.env.NEXT_PUBLIC_API_URL;
+  } else {
+    return "";
+  }
+};
 
 export async function fetchItems() {
-  console.log('BASE_URL:', BASE_URL);
   try {
-    const res = await fetch(`${BASE_URL}/api/items`, {
-      cache: 'no-store',
+    const base = getBaseUrl();
+    const res = await fetch(`${base}/api/items`, {
+      cache: "no-store",
     });
 
-    if (!res.ok) throw new Error('Failed to fetch items');
+    if (!res.ok) throw new Error("Failed to fetch items");
     return await res.json();
   } catch (error) {
-    console.error('Error fetching items:', error);
+    console.error("Error fetching items:", error);
     throw error;
   }
 }
 
 export async function addItem(name: string, description: string) {
   try {
-    const res = await fetch(`${BASE_URL}/api/items`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch(`/api/items`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, description }),
     });
 
-    if (!res.ok) throw new Error('Failed to add item');
+    if (!res.ok) throw new Error("Failed to add item");
     return await res.json();
   } catch (error) {
-    console.error('Error adding item:', error);
+    console.error("Error adding item:", error);
     throw error;
   }
 }

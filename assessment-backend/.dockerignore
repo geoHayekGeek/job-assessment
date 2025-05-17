@@ -1,0 +1,16 @@
+# Ignore Gradle files and directories
+.gradle
+.gradle-cache
+
+# Ignore IDE-specific files
+*.iml
+.idea/
+.vscode/
+
+# Ignore Git files
+.git
+.gitignore
+
+# Ignore logs and temp files
+*.log
+*.tmp
