@@ -1,5 +1,6 @@
 import "./globals.css";
 import NavbarWrapper from "./components/NavbarWrapper";
+import { Toaster } from 'sonner';
 
 export default function RootLayout({
   children,
@@ -10,6 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Toaster richColors position="top-right" />
         <NavbarWrapper />
         {children}
       </body>

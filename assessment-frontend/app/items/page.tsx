@@ -2,8 +2,14 @@ import ItemsClient from "../components/Items";
 import { fetchItems } from "./utils/itemsApi";
 
 export default async function ItemsPage() {
-  // Fetch items on the server
-  const items = await fetchItems();
-  
-  return <ItemsClient initialItems={items} />;
+  let items = [];
+  let hasError = false;
+
+  try {
+    items = await fetchItems();
+  } catch (e) {
+    hasError = true;
+  }
+
+  return <ItemsClient initialItems={items} hasError={hasError} />;
 }

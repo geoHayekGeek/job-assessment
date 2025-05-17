@@ -11,7 +11,7 @@ export async function fetchItems() {
     return await res.json();
   } catch (error) {
     console.error('Error fetching items:', error);
-    return [];
+    throw error;
   }
 }
 
