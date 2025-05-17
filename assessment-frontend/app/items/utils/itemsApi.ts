@@ -1,11 +1,12 @@
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/$/, '') || '';
+
 export async function fetchItems() {
+  console.log('BASE_URL:', BASE_URL);
   try {
-    const res = await fetch("http://localhost:8080/api/items", { 
+    const res = await fetch(`${BASE_URL}/api/items`, {
       cache: 'no-store',
-      // In a real application, you'd want to use different base URLs for server vs. client
-      // and potentially use Next.js route handlers instead of direct API calls
     });
-    
+
     if (!res.ok) throw new Error('Failed to fetch items');
     return await res.json();
   } catch (error) {
@@ -15,14 +16,17 @@ export async function fetchItems() {
 }
 
 export async function addItem(name: string, description: string) {
-  const res = await fetch("http://localhost:8080/api/items", {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ name, description }),
-  });
+  try {
+    const res = await fetch(`${BASE_URL}/api/items`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, description }),
+    });
 
-  if (!res.ok) throw new Error('Failed to add item');
-  return await res.json();
+    if (!res.ok) throw new Error('Failed to add item');
+    return await res.json();
+  } catch (error) {
+    console.error('Error adding item:', error);
+    throw error;
+  }
 }

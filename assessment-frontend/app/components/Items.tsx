@@ -2,9 +2,6 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-// import AddItemModal from './AddItemModal';
-// import ItemsTable from './ItemsTable';
-// import { addItem } from '../utils/itemsApi';
 import AddItemModal from './AddItemModal';
 import ItemsTable from './ItemsTable';
 import { addItem } from "../items/utils/itemsApi"

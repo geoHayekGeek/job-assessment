@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";  // <-- important, see below
+import { useRouter } from "next/navigation"; 
 import { FaUserCircle } from "react-icons/fa";
 
 const UserButton = () => {
