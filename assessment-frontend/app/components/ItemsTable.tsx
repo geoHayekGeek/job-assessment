@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import styles from './css/ItemsTable.module.css'
 
 interface Item {
   id: number;
@@ -14,7 +15,7 @@ interface ItemsTableProps {
 
 export default function ItemsTable({ items }: ItemsTableProps) {
   return (
-    <div className="bg-white rounded-lg shadow overflow-hidden">
+    <div className={`bg-white rounded-lg shadow overflow-hidden ${styles.TableXScroll}`}>
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
